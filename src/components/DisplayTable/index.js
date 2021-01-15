@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import clsx from 'clsx';
-// import { lighten, makeStyles } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -11,16 +9,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
-// import Toolbar from '@material-ui/core/Toolbar';
-// import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-// import Checkbox from '@material-ui/core/Checkbox';
-// import IconButton from '@material-ui/core/IconButton';
-// import Tooltip from '@material-ui/core/Tooltip';
-// import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import Switch from '@material-ui/core/Switch';
-// import DeleteIcon from '@material-ui/icons/Delete';
-// import FilterListIcon from '@material-ui/icons/FilterList';
 
 function createData(name, email, username, phone, location) {
   return { name, email, username, phone, location };
@@ -77,22 +66,14 @@ const headCells = [
 ];
 
 function EnhancedTableHead(props) {
-  const { classes, order, orderBy, onRequestSort } = props; //rowCount, numSelected, onSelectAllClick
+  const { classes, order, orderBy, onRequestSort } = props;
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
 
   return (
     <TableHead>
-      <TableRow>
-        {/* <TableCell padding="checkbox">
-          <Checkbox
-            indeterminate={numSelected > 0 && numSelected < rowCount}
-            checked={rowCount > 0 && numSelected === rowCount}
-            onChange={onSelectAllClick}
-            inputProps={{ 'aria-label': 'select all desserts' }}
-          />
-        </TableCell> */}
+      <TableRow>        
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
@@ -121,33 +102,10 @@ function EnhancedTableHead(props) {
 
 EnhancedTableHead.propTypes = {
   classes: PropTypes.object.isRequired,
-//   numSelected: PropTypes.number.isRequired,
   onRequestSort: PropTypes.func.isRequired,
-//   onSelectAllClick: PropTypes.func.isRequired,
   order: PropTypes.oneOf(['asc', 'desc']).isRequired,
   orderBy: PropTypes.string.isRequired,
-//   rowCount: PropTypes.number.isRequired,
 };
-
-// const useToolbarStyles = makeStyles((theme) => ({
-//   root: {
-//     paddingLeft: theme.spacing(2),
-//     paddingRight: theme.spacing(1),
-//   },
-//   highlight:
-//     theme.palette.type === 'light'
-//       ? {
-//           color: theme.palette.secondary.main,
-//           backgroundColor: lighten(theme.palette.secondary.light, 0.85),
-//         }
-//       : {
-//           color: theme.palette.text.primary,
-//           backgroundColor: theme.palette.secondary.dark,
-//         },
-//   title: {
-//     flex: '1 1 100%',
-//   },
-// }));
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -177,9 +135,7 @@ export default function DisplayTable() {
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('email');
-//   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
-//   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   const handleRequestSort = (event, property) => {
@@ -187,35 +143,6 @@ export default function DisplayTable() {
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
-
-//   const handleSelectAllClick = (event) => {
-//     if (event.target.checked) {
-//       const newSelecteds = rows.map((n) => n.name);
-//       setSelected(newSelecteds);
-//       return;
-//     }
-//     setSelected([]);
-//   };
-
-//   const handleClick = (event, name) => {
-//     const selectedIndex = selected.indexOf(name);
-//     let newSelected = [];
-
-//     if (selectedIndex === -1) {
-//       newSelected = newSelected.concat(selected, name);
-//     } else if (selectedIndex === 0) {
-//       newSelected = newSelected.concat(selected.slice(1));
-//     } else if (selectedIndex === selected.length - 1) {
-//       newSelected = newSelected.concat(selected.slice(0, -1));
-//     } else if (selectedIndex > 0) {
-//       newSelected = newSelected.concat(
-//         selected.slice(0, selectedIndex),
-//         selected.slice(selectedIndex + 1),
-//       );
-//     }
-
-//     setSelected(newSelected);
-//   };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -226,12 +153,6 @@ export default function DisplayTable() {
     setPage(0);
   };
 
-//   const handleChangeDense = (event) => {
-//     setDense(event.target.checked);
-//   };
-
-//   const isSelected = (name) => selected.indexOf(name) !== -1;
-
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   return (
@@ -241,41 +162,28 @@ export default function DisplayTable() {
           <Table
             className={classes.table}
             aria-labelledby="tableTitle"
-            //size={dense ? 'small' : 'medium'}
             aria-label="enhanced table"
           >
             <EnhancedTableHead
               classes={classes}
-            //   numSelected={selected.length}
               order={order}
               orderBy={orderBy}
-            //   onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
-            //   rowCount={rows.length}
             />
             <TableBody>
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                //   const isItemSelected = isSelected(row.name);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
                       hover
-                    //   onClick={(event) => handleClick(event, row.name)}
                       role="checkbox"
                     
                       tabIndex={-1}
                       key={row.name}
-                    //   selected={isItemSelected} ////   aria-checked={isItemSelected}
                     >
-                      {/* <TableCell padding="checkbox">
-                        <Checkbox
-                          checked={isItemSelected}
-                          inputProps={{ 'aria-labelledby': labelId }}
-                        />
-                      </TableCell> */}
                       <TableCell component="th" id={labelId} scope="row">
                         {row.name}
                       </TableCell>
@@ -287,7 +195,6 @@ export default function DisplayTable() {
                   );
                 })}
               {emptyRows > 0 && (
-                // <TableRow style={{ height: (dense ? 33 : 53) * emptyRows }}>
                 <TableRow style={{ height: (53) * emptyRows }}>
                   <TableCell colSpan={6} />
                 </TableRow>
@@ -305,10 +212,6 @@ export default function DisplayTable() {
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
       </Paper>
-      {/* <FormControlLabel
-        control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="Dense padding"
-      /> */}
     </div>
   );
 }
