@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import employees from './employees.svg';
 // Image used from paid thinkstock/istock library
 import Hidden from '@material-ui/core/Hidden';
+import SearchBar from '../SearchBar';
 
 const useStyles = makeStyles({
   root: {
@@ -21,6 +22,7 @@ export default function NavBar() {
 
   return (
     <div className={classes.root} style={{display: "flex", justifyContent: "flex-end", alignItems: "right" }}>
+        <SearchBar />
         <Hidden xsDown><img className={classes.image} src={employees} alt="Employees" height="200" display={{ xs: 'block', md: 'none' }}/></Hidden>
     </div>
   );
