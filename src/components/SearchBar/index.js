@@ -10,11 +10,27 @@ import SearchIcon from '@material-ui/icons/Search';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    color: 'black',
     position: 'absolute',
     top: 110,
     left: 60,
+    '& label.Mui-focused': {
+      color: 'black',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: 'black',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'black',
+      },
+      '&:hover fieldset': {
+        borderColor: 'black',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'black',
+      },
+    },
   },
   margin: {
     marginTop: 15,
@@ -23,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   textField: {
     width: '300px',
     background: 'white',
-    borderRadius: 5
+    borderRadius: 5,
   },
 }));
 
@@ -34,7 +50,7 @@ export default function SearchBar() {
     password: '',
     weight: '',
     weightRange: '',
-    showPassword: false,
+    showPassword: false,    
   });
 
   const handleChange = (prop) => (event) => {
@@ -53,7 +69,9 @@ export default function SearchBar() {
             size="small"
             onChange={handleChange('search')}
             endAdornment={
-              <InputAdornment position="end">
+              <InputAdornment 
+              position="end" 
+              >
                 <IconButton
                   aria-label="search" edge="end"
                 >
