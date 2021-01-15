@@ -48,7 +48,7 @@ export default function SearchBar( props ) {
 
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
-    props.onChange(values.search);
+    props.onChange(event.target.value);
   };
 
   return (

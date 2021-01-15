@@ -128,6 +128,8 @@ export default function DisplayTable(props) {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [loadingData, setLoadingData] = useState(true);
   const [searchFor, setSearchFor] = useState("");
+  
+  let displayTotal = 0;
 
   useEffect(() => {
     setSearchFor(props.searchFor);
@@ -162,6 +164,13 @@ export default function DisplayTable(props) {
     setPage(0);
   };
 
+  function checkSearch(which) {
+    if (which.name.toLowerCase().indexOf(searchFor.toLowerCase()) !== -1){
+      displayTotal++;
+    }
+    return which.name.toLowerCase().indexOf(searchFor.toLowerCase()) !== -1;
+  }
+
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   if (loadingData) {
@@ -188,7 +197,7 @@ export default function DisplayTable(props) {
               />
               <TableBody>
                 {stableSort(rows, getComparator(order, orderBy))
-                  .filter(el => el.name.toLowerCase().indexOf(searchFor.toLowerCase()) !== -1)
+                  .filter(checkSearch)
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row, index) => {
                     const labelId = `enhanced-table-checkbox-${index}`;
@@ -211,18 +220,18 @@ export default function DisplayTable(props) {
                       </TableRow>
                     );
                   })}
-                {emptyRows > 0 && (
+                {/* {emptyRows > 0 && (
                   <TableRow style={{ height: (53) * emptyRows }}>
                     <TableCell colSpan={6} />
                   </TableRow>
-                )}
+                )} */}
               </TableBody>
             </Table>
           </TableContainer>
           <TablePagination
             rowsPerPageOptions={[10, 20, 30]}
             component="div"
-            count={rows.length}
+            count={displayTotal}
             rowsPerPage={rowsPerPage}
             page={page}
             onChangePage={handleChangePage}
