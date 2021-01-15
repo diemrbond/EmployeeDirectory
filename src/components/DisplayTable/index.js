@@ -11,8 +11,7 @@ import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Paper from '@material-ui/core/Paper';
 import API from '../../utils/API';
-import LoadingBox from '../LoadingBox'
-// import { values } from '../SearchBar';
+import LoadingBox from '../LoadingBox';
 
 function createData(name, email, username, phone, location) {
   return { name, email, username, phone, location };
@@ -37,6 +36,7 @@ function getComparator(order, orderBy) {
 }
 
 function stableSort(array, comparator) {
+
   const stabilizedThis = array.map((el, index) => [el, index]);
   stabilizedThis.sort((a, b) => {
     const order = comparator(a[0], b[0]);
@@ -120,13 +120,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function DisplayTable() {
+export default function DisplayTable(props) {
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('email');
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [loadingData, setLoadingData] = useState(true);
+  const [searchFor, setSearchFor] = useState("");
+
+  useEffect(() => {
+    setSearchFor(props.searchFor);
+  }, [props.searchFor]);
 
   useEffect(() => {
     API.getEmployees(50).then(res => {
@@ -167,7 +172,7 @@ export default function DisplayTable() {
   else {
     return (
       <div className={classes.root}>
-        {/* VALUES {values} */}
+        
         <Paper className={classes.paper}>
           <TableContainer>
             <Table
@@ -183,6 +188,7 @@ export default function DisplayTable() {
               />
               <TableBody>
                 {stableSort(rows, getComparator(order, orderBy))
+                  .filter(el => el.name.toLowerCase().indexOf(searchFor.toLowerCase()) !== -1)
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row, index) => {
                     const labelId = `enhanced-table-checkbox-${index}`;

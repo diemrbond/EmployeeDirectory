@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import employees from './employees.svg';
 // Image used from paid thinkstock/istock library
@@ -17,14 +17,19 @@ const useStyles = makeStyles({
   },
 });
 
-
-
-export default function NavBar() {
+export default function NavBar( props ) {
   const classes = useStyles();
+
+  const [value, setValue] = useState("");
+
+  function handleChange(newValue) {
+    setValue(newValue);
+    props.onChange(newValue);
+  }
 
   return (
     <div className={classes.root} style={{display: "flex", justifyContent: "flex-end", alignItems: "right" }}>
-        <SearchBar />
+        <SearchBar value={value} onChange={handleChange}/>
         <Hidden xsDown><img className={classes.image} src={employees} alt="Employees" height="200" display={{ xs: 'block', md: 'none' }}/></Hidden>
     </div>
   );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -33,8 +33,15 @@ const useStyles = makeStyles({
   }
 });
 
-export default function NavBar() {
+export default function NavBar(props) {
   const classes = useStyles();
+
+  const [value, setValue] = useState("");
+
+  function handleChange(newValue) {
+    setValue(newValue);
+    props.onChange(newValue);
+  }
 
   return (
     <div>
@@ -46,7 +53,7 @@ export default function NavBar() {
           </Typography>
         </Toolbar>
       </AppBar>
-      <ImgBar />
+      <ImgBar value={value} onChange={handleChange}/>
     </div>
   );
 }
