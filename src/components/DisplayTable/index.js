@@ -12,6 +12,7 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Paper from '@material-ui/core/Paper';
 import API from '../../utils/API';
 import LoadingBox from '../LoadingBox'
+// import { values } from '../SearchBar';
 
 function createData(name, email, username, phone, location) {
   return { name, email, username, phone, location };
@@ -160,13 +161,13 @@ export default function DisplayTable() {
 
   if (loadingData) {
     return (
-      <LoadingBox></LoadingBox>
-      
+      <LoadingBox></LoadingBox>      
     );
   }
   else {
     return (
       <div className={classes.root}>
+        {/* VALUES {values} */}
         <Paper className={classes.paper}>
           <TableContainer>
             <Table
