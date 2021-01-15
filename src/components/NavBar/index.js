@@ -4,6 +4,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
+import ImgBar from '../ImgBar'
 
 const useStyles = makeStyles({
   root: {
@@ -45,6 +46,7 @@ export default function NavBar() {
           </Typography>
         </Toolbar>
       </AppBar>
+      <ImgBar />
     </div>
   );
 }

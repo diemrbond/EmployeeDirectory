@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+// import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Container from '@material-ui/core/Container';
 import NavBar from "./components/NavBar";
@@ -7,7 +7,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 function App() {
   return (
-    <Router>
+    // <Router>
       <div>
       <CssBaseline />
         <NavBar />
@@ -21,7 +21,7 @@ function App() {
           <Footer /> */}
         </Container>
       </div>
-    </Router>
+    // </Router>
   );
 }
 
