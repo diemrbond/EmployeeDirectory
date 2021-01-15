@@ -11,7 +11,7 @@ const useStyles = makeStyles({
     height: 70,
   },
   image: {
-    top: -55,
+    top: -120,
     position: 'relative'
   },
 });
@@ -21,7 +21,7 @@ export default function NavBar() {
 
   return (
     <div className={classes.root} style={{display: "flex", justifyContent: "flex-end", alignItems: "right" }}>
-        <Hidden xsDown><img className={classes.image} src={employees} height="200" display={{ xs: 'block', md: 'none' }}/></Hidden>
+        <Hidden xsDown><img className={classes.image} src={employees} alt="Employees" height="200" display={{ xs: 'block', md: 'none' }}/></Hidden>
     </div>
   );
 }
