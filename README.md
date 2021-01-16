@@ -1,55 +1,72 @@
-# Unit 19 React Homework: Employee Directory
+# Employee Directory
 
-## Overview
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+## Description 
+  For this project, we needed to create a working Employee Directory using React JS. The project required to be broken up into components, using component state and responding to user events. They should be able to sort by table headers and filter by employee name. I also included Material UI for the styling.
 
-For this assignment, you'll create a employee directory with React. This assignment will require you to break up your application's UI into components, manage component state, and respond to user events.
+  ```
+  As a user, I want to be able to view my entire employee directory at once so that I have quick access to their information.
 
-## User Story
+  An employee or manager would benefit greatly from being able to view non-sensitive data about other employees. It would be particularly helpful to be able to filter employees by name.
+  ```
 
-* As a user, I want to be able to view my entire employee directory at once so that I have quick access to their information.
 
-## Business Context
+<img src="assets/img/screenshot.jpg" width="600" /> <br>
 
-An employee or manager would benefit greatly from being able to view non-sensitive data about other employees. It would be particularly helpful to be able to filter employees by name.
+<img src="assets/img/demo.gif" width="600" /> <br>
 
-## Acceptance Criteria
 
-Given a table of random users generated from the [Random User API](https://randomuser.me/), when the user loads the page, a table of employees should render. 
+  ---
+  ## Deployed Application 
+  https://diemrbond.github.io/EmployeeDirectory/
+    
 
-The user should be able to:
+  ---
+  ## Table of Contents
 
-  * Sort the table by at least one category
+  * [Installation](#installation)
+  * [Usage](#usage)
+  * [License](#license)
+  * [Questions](#questions)
 
-  * Filter the users by at least one property.
 
-## Commit Early and Often
 
-One of the most important skills to master as a web developer is version control. Building the habit of committing via Git is important for two reasons:
+  ---
+  ## Installation 
+  1. `git clone https://github.com/diemrbond/EmployeeDirectory`
+  2. `npm install`
 
-1. Your commit history is a signal to employers that you are actively working on projects and learning new skills
 
-2. Your commit history allows you to revert your code base in the event that you need to return to a previous state
+  
+  ---
+  ## Usage 
+  1. `npm start`
 
-Follow these guidelines for committing:
 
-* Make single purpose commits for related changes to ensure a clean, manageable history. If you are fixing two issues, make two commits
 
-* Write descriptive, meaningful commit messages so that you and anyone else looking at your repository can easily understand its history
+  ---
+  ## License 
+  This application is licensed under: GNU GPLv3
+  
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
-* Don't commit half done work, for the sake of your collaborators (and your future self!)
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
-* Test your application before you commit to ensure functionality at every step in the development process
+You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-* We would like you to have well over 200 commits by graduation, so commit early and often!
 
-* Deploy this site to GitHub Pages using the [Create React App docs for deployment.](https://create-react-app.dev/docs/deployment/#github-pages)
+  
+  ---
+  ## Questions
+  If you have any questions about this project, please feel free to contact me via the following information:
 
-* **Important**: Be sure to push your codebase to GitHub and **NOT** your built and deployed code. Ensure this happens by following the above instructions and using the `gh-pages` branch to host the deployed application's code.
+  <img src="https://avatars3.githubusercontent.com/u/32446328?v=4" width="50" />
 
-## Submission on BCS
+  Andrew Kelleher
 
-You are required to submit the following:
+  Github: https://github.com/diemrbond
 
-* the URL to the deployed application
+  Email: [mrbondmustdie@gmail.com](mailto:mrbondmustdie@gmail.com)
 
-* the URL to the Github repository
+  ---
+  © 2020 Andrew Kelleher | https://diemrbond.github.io 
