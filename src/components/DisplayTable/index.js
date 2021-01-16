@@ -12,6 +12,7 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Paper from '@material-ui/core/Paper';
 import API from '../../utils/API';
 import LoadingBox from '../LoadingBox';
+import './index.css';
 
 function createData(name, email, username, phone, location) {
   return { name, email, username, phone, location };
@@ -77,7 +78,7 @@ function EnhancedTableHead(props) {
             >
               {headCell.label}
               {orderBy === headCell.id ? (
-                <span className={classes.visuallyHidden}>
+                <span className={classes.visuallyHidden} >
                   {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
                 </span>
               ) : null}
@@ -136,17 +137,26 @@ export default function DisplayTable(props) {
   }, [props.searchFor]);
 
   useEffect(() => {
-    API.getEmployees(50).then(res => {
+
+    // Just adding myself to the list
+    rows.push(createData(`Kelleher, Andrew`,
+    `mrbondmustdie@gmail.com`,
+    `diemrbond`,
+    `0408-012-345`,
+    `Perth, Australia`));
+
+    API(49).then(res => {
       for (var i = 0; i < res.data.results.length; i++) {
         let theUser = res.data.results[i];
         rows.push(createData(`${theUser.name.last}, ${theUser.name.first}`,
           `${theUser.email}`,
           `${theUser.login.username}`,
-          `${theUser.phone}`,
+          `${theUser.cell}`,
           `${theUser.location.city}, ${theUser.location.country}`));
       }
       setLoadingData(false);
     })
+    // .catch(console.log("ERROR"))
   }, []);
 
   const handleRequestSort = (event, property) => {
@@ -171,7 +181,7 @@ export default function DisplayTable(props) {
     return which.name.toLowerCase().indexOf(searchFor.toLowerCase()) !== -1;
   }
 
-  const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+  // const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   if (loadingData) {
     return (
